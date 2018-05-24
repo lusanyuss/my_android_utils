@@ -1,0 +1,60 @@
+# Built application files
+*.apk
+*.ap_
+
+# Files for the Dalvik VM
+*.dex
+*.zip
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+# Local configuration file (sdk path, etc)
+local.properties
+gradle.properties
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+.DS_Store
+
+# Eclipse project files
+.classpath
+.project
+
+# Android Studio
+*.iml
+.idea
+
+#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+.gradle
+build/
+apk/
+gradlew
+gradlew.bat
+
+#NDK
+obj/
+
+*.swp
+*~
+
+# Gradle files
+/*/build/
+
+.idea/
+gradle/
+# Local configuration file (sdk path, etc)
+settings.gradle
+
+
+test/libs/
+test/src/main/res/drawable/
+app/src/main/res/drawable-xxxhdpi/
+captures/
