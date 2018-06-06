@@ -1,20 +1,14 @@
 package model;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * User
  * Created by jaycee on 2017/6/23.
  */
 public class User {
 
-    @SerializedName("id")
-    private long id;
-    @SerializedName("token")
+    private long   id;
     private String token;
-    @SerializedName("imageUrl")
     private String imageUrl;
-    @SerializedName("nickname")
     private String nickname;
 
     public long getId() {
