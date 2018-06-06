@@ -14,8 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitApi {
 
     private static final long   TIMEOUT          = 30;
-    public static final  String BASE_URL1        = "http://www.baidu1.com";
-    public static final  String BASE_URL2        = "http://www.baidu2.com";
+    public static final  String BASE_URL1        = "https://testapi.uhouzz.com";
+    public static final  String BASE_URL2        = "https://scanner.tradingview.com";
     public static final  String BASE_URL_NAME1   = "url1";//ApiService的header中使用  例如:{"urlname:url1"}
     public static final  String BASE_URL_NAME2   = "url2";//ApiService的header中使用  例如:{"urlname:url1"}
     public static final  String BASE_URL_DEFAULT = BASE_URL1; //默认
@@ -23,12 +23,13 @@ public class RetrofitApi {
 
     // Retrofit是基于OkHttpClient的，可以创建一个OkHttpClient进行一些配置
     private static OkHttpClient httpClient = new OkHttpClient.Builder()
-            //添加header拦截器方便调试接口
-            .addInterceptor(InterceptorUtil.HeaderInterceptor())
-            //添加HttpLoggingInterceptor拦截器方便调试接口
-            .addInterceptor(InterceptorUtil.LogInterceptor())
             //多baseUrl拦截器
             .addInterceptor(InterceptorUtil.MoreBaseUrlInterceptor())
+            //添加HttpLoggingInterceptor拦截器方便调试接口
+            .addInterceptor(InterceptorUtil.LogInterceptor())
+            //添加header拦截器方便调试接口
+            .addInterceptor(InterceptorUtil.HeaderInterceptor())
+
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             //缓存

@@ -1,10 +1,12 @@
 package com.yuliu.base.http;
 
 
+import com.yuliu.base.results.InfoResult;
+import com.yuliu.base.results.TokenResult;
+
 import java.util.Map;
 
 import io.reactivex.Observable;
-import model.User;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -18,17 +20,18 @@ import retrofit2.http.QueryMap;
  */
 public interface ApiService {
 
-
+    //    https://testapi.uhouzz.com/uhouzz5.9.2/index.php/region/configuration?src=android&sourceApp=1
 
     // TODO: 2018/6/6 post请求
     @Headers({"urlname:url1"})
     @FormUrlEncoded
-    @POST("account/login")
-    Observable<BaseEntity<User>> rqPostUser(@FieldMap Map<String, Object> map);
+    @POST("uhouzz5.9.2/index.php/region/configuration")
+    Observable<TokenResult> rqPostUser(@FieldMap Map<String, Object> map);
 
     // TODO: 2018/6/6 get请求
-    @GET("video/getUrl")
-    Observable<BaseEntity<User>> rqGetUser(@QueryMap Map<String, Object> map);
+    @Headers({"urlname:url2"})
+    @GET("crypto/scan")
+    Observable<InfoResult> rqGetUser(@QueryMap Map<String, Object> map);
 
 
 }
