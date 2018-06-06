@@ -35,7 +35,6 @@ Thumbs.db
 #.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
 .gradle
 build/
-apk/
 gradlew
 gradlew.bat
 
@@ -47,7 +46,6 @@ obj/
 
 # Gradle files
 /*/build/
-
 .idea/
 gradle/
 # Local configuration file (sdk path, etc)
@@ -56,5 +54,3 @@ settings.gradle
 
 test/libs/
 test/src/main/res/drawable/
-app/src/main/res/drawable-xxxhdpi/
-captures/
