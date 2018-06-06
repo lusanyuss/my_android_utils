@@ -12,13 +12,17 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitApi {
+    private static final long TIMEOUT = 30;
 
-    private static final long   TIMEOUT          = 30;
-    public static final  String BASE_URL1        = "https://testapi.uhouzz.com";
-    public static final  String BASE_URL2        = "https://scanner.tradingview.com";
-    public static final  String BASE_URL_NAME1   = "url1";//ApiService的header中使用  例如:{"urlname:url1"}
-    public static final  String BASE_URL_NAME2   = "url2";//ApiService的header中使用  例如:{"urlname:url1"}
-    public static final  String BASE_URL_DEFAULT = BASE_URL1; //默认
+
+    // TODO: 2018/6/7  每个baseurl的path
+
+    public static final String BASE_URL1 = "https://testapi.uhouzz.com/"  ;
+    public static final String BASE_URL2 = "https://scanner.tradingview.com/" ;
+
+    public static final String BASE_URL_NAME1   = "url1";//ApiService的header中使用  例如:{"urlname:url1"}
+    public static final String BASE_URL_NAME2   = "url2";//ApiService的header中使用  例如:{"urlname:url1"}
+    public static final String BASE_URL_DEFAULT = BASE_URL1; //默认
 
 
     // Retrofit是基于OkHttpClient的，可以创建一个OkHttpClient进行一些配置

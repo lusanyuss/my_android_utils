@@ -58,6 +58,7 @@ public class InterceptorUtil {
                     //根据头信息中配置的value,来匹配新的base_url地址
                     if (RetrofitApi.BASE_URL_NAME1.equals(urlname)) {
                         baseURL = HttpUrl.parse(RetrofitApi.BASE_URL1);
+
                     } else if (RetrofitApi.BASE_URL_NAME2.equals(urlname)) {
                         baseURL = HttpUrl.parse(RetrofitApi.BASE_URL2);
                     }
