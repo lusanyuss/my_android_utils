@@ -1,17 +1,16 @@
 package com.yuliu.base.http;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
+
+import com.yuliu.base.MMLog;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import utils.ToastUtils;
 
 public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
-
-    private static final String TAG = "BaseObserver";
     private Context mContext;
-
     protected BaseObserver(Context context) {
         this.mContext = context.getApplicationContext();
     }
@@ -33,12 +32,12 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
 
     @Override
     public void onError(Throwable e) {
-        Log.e(TAG, "onError:" + e.toString());
+        MMLog.v("onError:" + e.toString());
     }
 
     @Override
     public void onComplete() {
-        Log.d(TAG, "onComplete");
+        MMLog.v("onComplete");
     }
 
     protected abstract void onHandleSuccess(T t);
