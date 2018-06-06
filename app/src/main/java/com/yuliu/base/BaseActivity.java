@@ -71,8 +71,6 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
     public abstract void initView();
 
-    public abstract String getTitleString();
-
 
     public <T> ObservableTransformer<T, T> compose(final LifecycleTransformer<T> lifecycle) {
         return new ObservableTransformer<T, T>() {
