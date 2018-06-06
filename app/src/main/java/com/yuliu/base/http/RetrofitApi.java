@@ -25,11 +25,10 @@ public class RetrofitApi {
     private static OkHttpClient httpClient = new OkHttpClient.Builder()
             //多baseUrl拦截器
             .addInterceptor(InterceptorUtil.MoreBaseUrlInterceptor())
-            //添加HttpLoggingInterceptor拦截器方便调试接口
-            .addInterceptor(InterceptorUtil.LogInterceptor())
             //添加header拦截器方便调试接口
             .addInterceptor(InterceptorUtil.HeaderInterceptor())
-
+            //添加HttpLoggingInterceptor拦截器方便调试接口
+            .addInterceptor(InterceptorUtil.LogInterceptor())
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             //缓存
