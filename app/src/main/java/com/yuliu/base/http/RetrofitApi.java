@@ -17,11 +17,11 @@ public class RetrofitApi {
 
     // TODO: 2018/6/7  每个baseurl的path
 
-    public static final String BASE_URL1 = "https://testapi.uhouzz.com/"  ;
-    public static final String BASE_URL2 = "https://scanner.tradingview.com/" ;
+    public static final String BASE_URL1 = "https://testapi.uhouzz.com/";
+    public static final String BASE_URL2 = "https://scanner.tradingview.com/";
 
-    public static final String BASE_URL_NAME1   = "url1";//ApiService的header中使用  例如:{"urlname:url1"}
-    public static final String BASE_URL_NAME2   = "url2";//ApiService的header中使用  例如:{"urlname:url1"}
+    public static final String BASE_URL_NAME1 = "url1";//ApiService的header中使用  例如:{"urlname:url1"}
+    public static final String BASE_URL_NAME2 = "url2";//ApiService的header中使用  例如:{"urlname:url1"}
     public static final String BASE_URL_DEFAULT = BASE_URL1; //默认
 
 
@@ -31,12 +31,14 @@ public class RetrofitApi {
             .addInterceptor(InterceptorUtil.MoreBaseUrlInterceptor())
             //添加header拦截器方便调试接口
             .addInterceptor(InterceptorUtil.HeaderInterceptor())
+            //添加缓存拦截器
+            .cache(new Cache(new File(App.mApp.getApplicationContext().getCacheDir(), "responses"), 1024 * 1024 * 20))
+            .addNetworkInterceptor(InterceptorUtil.HttpCacheInterceptor())
             //添加HttpLoggingInterceptor拦截器方便调试接口
             .addInterceptor(InterceptorUtil.LogInterceptor())
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             //缓存
-            .cache(new Cache(new File(App.mApp.getApplicationContext().getCacheDir(), "cache"), 1024 * 1024 * 100))
             .build();
 
 
