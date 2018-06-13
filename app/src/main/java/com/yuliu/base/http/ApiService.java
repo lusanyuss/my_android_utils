@@ -23,13 +23,14 @@ public interface ApiService {
     //    https://testapi.uhouzz.com/uhouzz5.9.2/index.php/region/configuration?src=android&sourceApp=1
 
     // TODO: 2018/6/6 post请求
-    @Headers({"urlname:url1"})
+
+    @Headers({"urlname:url1", "Cache-Control: max-age=560000"})
     @FormUrlEncoded
     @POST("uhouzz5.9.2/index.php/region/configuration")
     Observable<TokenResult> rqPostUser(@FieldMap Map<String, Object> map);
 
     // TODO: 2018/6/6 get请求
-    @Headers({"urlname:url2"})
+    @Headers({"urlname:url2", "Cache-Control: max-age=560000"})
     @GET("crypto/scan")
     Observable<InfoResult> rqGetUser(@QueryMap Map<String, Object> map);
 

@@ -1,5 +1,8 @@
 package com.yuliu.base.http;
 
+import android.text.TextUtils;
+
+import com.yuliu.BuildConfig;
 import com.yuliu.base.App;
 import com.yuliu.base.MMLog;
 
@@ -22,7 +25,9 @@ public class InterceptorUtil {
             public void log(String message) {
                 MMLog.v(message);
             }
-        }).setLevel(HttpLoggingInterceptor.Level.BODY);//设置打印数据的级别  
+        }).setLevel(BuildConfig.DEBUG ?
+                HttpLoggingInterceptor.Level.HEADERS :
+                HttpLoggingInterceptor.Level.NONE);//设置打印数据的级别
     }
 
     //header拦截器
@@ -90,29 +95,34 @@ public class InterceptorUtil {
             @Override
             public Response intercept(Chain chain) throws IOException {
 
-
                 //                maxStale ：设置最大失效时间，失效则不使用
                 //                minFresh ：设置最小有效时间，失效则不使用
                 //                FORCE_NETWORK ：强制走网络
                 //                FORCE_CACHE ：强制走缓存
 
                 Request request = chain.request();
+                String cacheControl = request.cacheControl().toString();
+
                 if (!Utils.isNetworkAvailable(App.mApp.getApplicationContext())) {
                     // TODO: 2018/6/7 无网强制走缓存
                     request = request.newBuilder()
                             .cacheControl(CacheControl.FORCE_CACHE)
                             .build();
                 }
-
                 Response response = chain.proceed(request);
 
+
                 if (Utils.isNetworkAvailable(App.mApp.getApplicationContext())) {
-                    // TODO: 2018/6/7 有网络的情况下设置max-age=60 x 60，即1分钟 
-                    int maxAge = 60 * 60; // 1 minute
-                    return response.newBuilder()
-                            .removeHeader("Pragma")
-                            .header("Cache-Control", "public ,max-age=" + maxAge)
-                            .build();
+                    // TODO: 2018/6/7 有网络的情况下设置max-age=60 x 60，即1分钟
+                    if (!TextUtils.isEmpty(cacheControl)) {
+                        return response.newBuilder()
+                                .removeHeader("Pragma")
+                                .header("Cache-Control", cacheControl)
+                                .build();
+                    } else {
+                        return response.newBuilder()
+                                .build();
+                    }
                 } else {
                     // TODO: 2018/6/7 没有网络的情况下设置max-stale=60 x 60 x 24 x 28，即4周。
                     int maxStale = 60 * 60 * 24 * 28; //  4-weeks stale
@@ -121,6 +131,7 @@ public class InterceptorUtil {
                             .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
                             .build();
                 }
+
             }
         };
 
