@@ -113,7 +113,7 @@ public class InterceptorUtil {
 
 
                 if (Utils.isNetworkAvailable(App.mApp.getApplicationContext())) {
-                    // TODO: 2018/6/7 有网络的情况下设置max-age=60 x 60，即1分钟
+                    // TODO: 2018/6/7 有网络的情况下设置max-age
                     if (!TextUtils.isEmpty(cacheControl)) {
                         return response.newBuilder()
                                 .removeHeader("Pragma")
